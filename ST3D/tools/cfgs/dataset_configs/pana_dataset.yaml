@@ -1,0 +1,79 @@
+DATASET: 'PanasonicDataset'
+DATA_PATH: '../data/panasonic'
+
+POINT_CLOUD_RANGE: [-70, -40, -3, 70, 40, 1] # xmin, ymin, zmin, xmax, ymax, zmax
+#[-70, -70, -2.052, 70, 70, 0.348] # xmin, ymin, zmin, xmax, ymax, zmax
+
+DATA_SPLIT: {
+    'train': train,
+    'test': val
+}
+
+
+INFO_PATH: {
+    'train': [panasonic_infos_train.pkl],
+    'test': [panasonic_infos_val.pkl],
+}
+
+TRAINING_CATEGORIES: {
+  'Car': 'Car'
+}
+
+
+FOV_POINTS_ONLY: False
+
+
+DATA_AUGMENTOR:
+    DISABLE_AUG_LIST: ['placeholder']
+    AUG_CONFIG_LIST:
+# gt sampling not working at the moment
+        - NAME: gt_sampling
+          USE_ROAD_PLANE: False
+          DB_INFO_PATH:
+              - panasonic_dbinfos_train.pkl
+          PREPARE: {
+             filter_by_min_points: ['Car:20', 'Pedestrian:20', 'Cyclist:20'],
+             filter_by_difficulty: [-1],
+          }
+
+          SAMPLE_GROUPS: ['Car:20','Pedestrian:15', 'Cyclist:15']
+          NUM_POINT_FEATURES: 4
+          DATABASE_WITH_FAKELIDAR: False
+          REMOVE_EXTRA_WIDTH: [0.0, 0.0, 0.0]
+          LIMIT_WHOLE_SCENE: True
+
+        - NAME: random_world_flip
+          ALONG_AXIS_LIST: ['x', 'y']
+
+        - NAME: random_world_rotation
+          WORLD_ROT_ANGLE: [-3.14159265, 3.114159265]
+
+        - NAME: random_world_scaling
+          WORLD_SCALE_RANGE: [0.95, 1.05]
+
+
+POINT_FEATURE_ENCODING: {
+    encoding_type: absolute_coordinates_encoding,
+    used_feature_list: ['x', 'y', 'z', 'intensity'],
+    src_feature_list: ['x', 'y', 'z', 'intensity'],
+}
+
+
+DATA_PROCESSOR:
+    - NAME: mask_points_and_boxes_outside_range
+      REMOVE_OUTSIDE_BOXES: True
+
+    - NAME: shuffle_points
+      SHUFFLE_ENABLED: {
+        'train': True,
+        'test': False
+      }
+
+    - NAME: transform_points_to_voxels
+      VOXEL_SIZE: [0.05, 0.05, 0.1]
+        #[0.05, 0.05, 0.06]
+      MAX_POINTS_PER_VOXEL: 5
+      MAX_NUMBER_OF_VOXELS: {
+        'train': 16000,
+        'test': 40000
+      }
