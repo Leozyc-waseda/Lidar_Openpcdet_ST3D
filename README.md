@@ -6,7 +6,7 @@
 > So I summarize a little bit what I did.
 
 > No matter what kind of lidar you use (velodyne, hesai, livox etc.), just get the data of (x,y,z,intensity) and the rest of the conversion is easy.
-> (x,y,z,intensity)->.txt, .pcd, bin, .npy etc.
+> (x,y,z,intensity)->.txt, .pcd, .bin, .npy etc.
 - Build a dataloader and import your own data(✔)
 - Training my own dataset（TO do）
 - Test my own dataset（TO do）
