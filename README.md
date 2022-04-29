@@ -41,7 +41,7 @@ ST3D/Openpcdet
             # - x pointing to the right
             # - y pointing to the front
             # - z pointing up
-            # Oepenpcdet Normative coordinates are:
+            # Openpcdet Normative coordinates are:
             # - x pointing foreward
             # - y pointings to the left
             # - z pointing to the top
