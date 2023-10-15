@@ -1,18 +1,21 @@
 # Lidar_Openpcdet_ST3D
 
-## Use Openpcdet to train your own dataset
-> Recently I've been working with my own dataset.
-> I think there are still many people who don't know how to use Openpcdet, an advanced lidar opensource, to train their own datasets, including me lol.
-> So I summarize a little bit what I did.
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FLeozyc-waseda%2FLidar_Openpcdet_ST3D&label=VISITORS&countColor=%23263759)
 
-> No matter what kind of lidar you use (velodyne, hesai, livox etc.), just get the data of (x,y,z,intensity) and the rest of the conversion is easy.
-> (x,y,z,intensity)->.txt, .pcd, .bin, .npy etc.
-- Build a dataloader and import your own data(✔)
-- Training my own dataset（TO do）
-- Test my own dataset（TO do）
+## Introduction
 
-# 1. Dataloader
-## 1.1 Prepare your own lidar data
+> Recently, I've been working with my own dataset. I realized many might be unfamiliar with how to utilize the advanced LiDAR open source tool, Openpcdet, to train their custom datasets. Hence, I've documented the steps I followed. Regardless of the type of LiDAR you use, ensure you have data in the format (x,y,z,intensity). The subsequent conversions are straightforward, ranging from formats like .txt, .pcd, .bin, to .npy.
+
+## Progress
+
+- ✅ Build a dataloader and import your own data
+- 📝 **Training my own dataset (TODO)**
+- 📝 **Test my own dataset (TODO)**
+
+## 1. Dataloader
+
+### 1.1 Prepare Your Own LiDAR Data
+
 
 ```
 ST3D/Openpcdet
@@ -84,10 +87,12 @@ https://github.com/Leozyc-waseda/Lidar_Openpcdet_ST3D/blob/365ac6b57906a01aeac27
 python -m pcdet.datasets.mydata.mydata_dataset create_mydata_infos tools/cfgs/dataset_configs/mydata_dataset.yaml
 ```
 
-# 2. Training my own dataset（TO do）
-# 3. Test my own dataset（TO do）
+2. Training my own dataset (📝 TODO)
+3. Test my own dataset (📝 TODO)
+---
+## 📜 License
 
-## License
+This project is licensed under the **MIT License**. 
 
-MIT
+For more details, see [LICENSE](LINK_TO_YOUR_LICENSE_FILE) file.
 
